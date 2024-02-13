@@ -38,19 +38,12 @@ public class UserServiceImpl implements UserService {
     public List<UserEntity> getUser() throws HandlerException {
         var userEntity = userRepository.findAll();
 
-        var xpto = userEntity.stream()
-               // .map(UserEntity::getAno)
-                .collect(
-                        Collectors.groupingBy(UserEntity::getId)
-                );
-
-
-        System.out.println(xpto.get(0).get(0).getId());
+        // Tratando Nullability
         if (userEntity.isEmpty()) {
             throw new HandlerException(new Exception("Nenhum usuário encontrado"));
         }
 
-        return null;
+        return userEntity;
     }
 
 
